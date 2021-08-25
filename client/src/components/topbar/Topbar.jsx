@@ -1,8 +1,16 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { Context } from '../../context/Context';
 import './topbar.css';
+import { Logout } from '../../context/Actions';
 
 const Topbar = () => {
-  const user = false;
+  const { user, dispatch } = useContext(Context);
+  const PF = 'http://localhost:5000/images/';
+
+  const logoutHandler = () => {
+    dispatch(Logout());
+  };
 
   return (
     <div className="top">
@@ -34,16 +42,24 @@ const Topbar = () => {
               WRITE
             </Link>
           </li>
-          <li className="topListItem">{user && 'LOGOUT'}</li>
+          <li className="topListItem" onClick={logoutHandler}>
+            {user && 'LOGOUT'}
+          </li>
         </ul>
       </div>
       <div className="topRight">
         {user ? (
-          <img
-            className="topImg"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNHmoZMKGtMCmxQjSStsw7Y19l_IauV_3-6g&usqp=CAU"
-            alt=""
-          />
+          <Link className="link" to="/settings">
+            <img
+              className="topImg"
+              src={
+                user.profilePic
+                  ? PF + user.profilePic
+                  : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNHmoZMKGtMCmxQjSStsw7Y19l_IauV_3-6g&usqp=CAU'
+              }
+              alt=""
+            />
+          </Link>
         ) : (
           <ul className="topList">
             <li className="topListItem">

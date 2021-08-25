@@ -57,3 +57,8 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+.registerError {
+  color: crimson;
+  margin-top: 10px;
+}

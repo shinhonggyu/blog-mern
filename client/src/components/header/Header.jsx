@@ -7,7 +7,7 @@ const Header = () => {
         <span className="headerTitleSm">React & Node</span>
         <span className="headerTitleLg">BLOG</span>
       </div>
-      <img src="assets/headerImg.jpg" className="headerImg" />
+      <img src="assets/headerImg.jpg" className="headerImg" alt="" />
     </div>
   );
 };
