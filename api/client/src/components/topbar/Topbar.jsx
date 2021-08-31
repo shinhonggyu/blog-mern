@@ -6,7 +6,7 @@ import { Logout } from '../../context/Actions';
 
 const Topbar = () => {
   const { user, dispatch } = useContext(Context);
-  const PF = 'http://localhost:5000/images/';
+  const PF = 'https://lamadevblog.herokuapp.com/images/';
 
   const logoutHandler = () => {
     dispatch(Logout());
