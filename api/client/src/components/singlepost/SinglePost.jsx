@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router';
 import './singlepost.css';
 import { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 import { Link } from 'react-router-dom';
 import { Context } from '../../context/Context';
 
@@ -19,7 +19,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     const fetchSinglePost = async () => {
-      const res = await axios.get(`/posts/${path}`);
+      const res = await axiosInstance.get(`/posts/${path}`);
       setSinglePost(res.data);
       setTitle(res.data.title);
       setDesc(res.data.desc);
@@ -29,7 +29,7 @@ const SinglePost = () => {
 
   const deleteHandler = async () => {
     try {
-      await axios.delete('/posts/' + path, {
+      await axiosInstance.delete('/posts/' + path, {
         data: { username: user.username },
       });
       window.location.replace('/');
@@ -40,7 +40,7 @@ const SinglePost = () => {
 
   const updateHandler = async () => {
     try {
-      await axios.put(`/posts/${singlePost._id}`, {
+      await axiosInstance.put(`/posts/${singlePost._id}`, {
         title,
         desc,
         username: user.username,

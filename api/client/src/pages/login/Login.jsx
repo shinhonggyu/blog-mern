@@ -3,7 +3,7 @@ import './login.css';
 import { useContext, useRef } from 'react';
 import { Context } from '../../context/Context';
 import { LoginStart, LoginSuccess, LoginFailure } from '../../context/Actions';
-import axios from 'axios';
+import { axiosInstance } from '../../config';
 
 const Login = () => {
   const nameRef = useRef();
@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(LoginStart());
     try {
-      const res = await axios.post('/auth/login', {
+      const res = await axiosInstance.post('/auth/login', {
         username: nameRef.current.value,
         password: passwordRef.current.value,
       });
